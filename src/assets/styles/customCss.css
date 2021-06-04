@@ -1,0 +1,137 @@
+/*段落*/
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  text-indent: 2em;
+  vertical-align: inherit;
+}
+
+/*背景图片*/
+body {
+  background-image: url("../images/bg.png") !important;
+}
+
+/*100%的高度*/
+.fullHeight {
+  height: 100vh !important;
+}
+
+/*边框颜色*/
+.border-color-red {
+  border-color: red !important;
+}
+
+.border-color-green {
+  border-color: green !important;
+}
+
+/*透明度*/
+.m-opacity-big {
+  opacity: 0.6 !important;
+}
+
+/*阴影*/
+.m-shadow-small {
+  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+.background-color-gray {
+  background: #ebebe4 !important;
+}
+
+.background-color-blue {
+  background: #66d7fa !important;
+}
+
+.background-color-green {
+  background: #b5fc88 !important;
+}
+
+/*垂直左右居中*/
+.absolute-center {
+  display: -webkit-flex !important;
+  display: flex !important;
+  -webkit-align-items: center !important;
+  align-items: center !important;
+  -webkit-justify-content: center !important;
+  justify-content: center !important;
+}
+
+/*垂直居中*/
+.vertical-center {
+  display: -webkit-flex !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0;
+}
+
+/*上内边距*/
+.m-padded-t {
+  padding-top: 0.5em !important;
+}
+
+/*上下内边距*/
+.m-padded-tb {
+  padding-top: 0.5em !important;
+  padding-bottom: 0.5em !important;
+}
+
+.m-padded-tb-large {
+  padding-top: 2em !important;
+  padding-bottom: 2em !important;
+}
+
+.m-padded-tb-big {
+  padding-top: 3em !important;
+  padding-bottom: 3em !important;
+}
+
+/*左右内边距*/
+.m-padded-lr {
+  padding-left: 0.5em !important;
+  padding-right: 0.5em !important;
+}
+
+.m-padded-lr-large {
+  padding-left: 1em !important;
+  padding-right: 1em !important;
+}
+
+/*左内边距*/
+.m-padded-l {
+  padding-left: 0.5em !important;
+}
+
+.m-padded-l-big {
+  padding-left: 3em !important;
+}
+
+.m-padded-l-very-big {
+  padding-left: 5em !important;
+}
+
+/*左外边距*/
+.m-margin-l {
+  margin-left: 0.5em !important;
+}
+
+.m-margin-l-big {
+  margin-left: 3em !important;
+}
+
+/*容器大小*/
+.m-container-tiny {
+  max-width: 40em !important;
+  margin: auto !important;
+}
+
+.m-container-small {
+  max-width: 50em !important;
+  margin: auto !important;
+}

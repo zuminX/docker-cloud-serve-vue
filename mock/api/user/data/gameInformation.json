@@ -1,0 +1,16 @@
+{
+  "success": true,
+  "code": 0,
+  "httpStatus": 200,
+  "message": null,
+  "data": [
+    {
+      "total": 1,
+      "correctNumber": 0,
+      "averageSpendTime": null,
+      "minSpendTime": null,
+      "maxSpendTime": null,
+      "sudokuLevelName": "简单模式"
+    }
+  ]
+}

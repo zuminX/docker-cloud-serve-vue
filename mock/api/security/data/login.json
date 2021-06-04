@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "code": 0,
+  "httpStatus": 200,
+  "message": null,
+  "data": {
+    "user": {
+      "id": 1,
+      "username": "test1",
+      "nickname": "测试管理员",
+      "roleList": [
+        {
+          "name": "ROLE_USER",
+          "nameZh": "用户"
+        },
+        {
+          "name": "ROLE_ADMIN",
+          "nameZh": "管理员"
+        }
+      ]
+    },
+    "token": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyOiI6ImFhYWYzMjQ2LThiZWMtNDEzYS05MzRiLTBhNGY0MjA5ZTk2YyJ9.k2xUnvoL960yLOKijNadNC_BLoYxQhLO-L-bmhLDtPEgqgtCoOYOuq7lXPbb7RZT57dJ6Mhg_xTqBpMtqDalmg"
+  }
+}
