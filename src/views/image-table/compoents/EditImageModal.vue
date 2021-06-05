@@ -64,6 +64,10 @@ export default {
     }
   },
   methods: {
+    /**
+     * 初始化显示内容
+     * @param image 镜像
+     */
     init(image) {
       selectiveAssign(image, this.form)
       showModal('editImageModal')
@@ -82,6 +86,7 @@ export default {
     },
     /**
      * 获取默认的表单对象
+     * @return 表单对象
      */
     getDefaultForm() {
       return {
@@ -94,6 +99,7 @@ export default {
     },
     /**
      * 设置镜像表单验证规则
+     * @return 验证规则
      */
     validateRule() {
       return {

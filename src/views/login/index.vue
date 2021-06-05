@@ -67,7 +67,6 @@ export default {
         this.refreshCaptcha()
         return
       }
-      this.loading = false
       this.$store.commit('SET_TOKEN', result.data.token)
       setData('refresh_token', result.data.refreshToken)
       result = await getBasicInfo()

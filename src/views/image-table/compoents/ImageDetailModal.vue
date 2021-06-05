@@ -52,6 +52,10 @@ export default {
     }
   },
   methods: {
+    /**
+     * 初始化显示内容
+     * @param image 镜像
+     */
     async init(image) {
       showModal('imageDetailModal')
       this.loading = true

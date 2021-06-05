@@ -95,6 +95,9 @@ export default {
     }
   },
   methods: {
+    /**
+     * 提交构建数据
+     */
     async submit() {
       const loadingInstance = Loading.service({ fullscreen: true, text: '上传中，请稍等...' })
       const { success } = await buildImage(this.buildFormData())
@@ -106,14 +109,24 @@ export default {
       }
       loadingInstance.close()
     },
+    /**
+     * 移动激活页
+     * @param step 移动步长
+     */
     move(step) {
       this.active += step
     },
-    // 覆盖默认的上传行为
+    /**
+     * 保存上传文件信息至表单对象中
+     * @param file 上传的文件
+     */
     requestUpload({ file }) {
       this.form = this.getDefaultForm(file)
     },
-    // 上传预处理
+    /**
+     * 上传预处理
+     * @param file 上传的文件
+     */
     beforeUpload(file) {
       this.fileType = getFileType(file.name)
       if (!this.allowType.includes(this.fileType)) {
@@ -131,6 +144,9 @@ export default {
       this.move(1)
       return true
     },
+    /**
+     * 构建上传表单数据
+     */
     buildFormData() {
       const formData = new FormData()
       for (const key of Object.keys(this.form)) {
@@ -143,6 +159,7 @@ export default {
     },
     /**
      * 设置镜像表单验证规则
+     * @return 验证规则
      */
     validateRule() {
       return {
@@ -153,6 +170,7 @@ export default {
     },
     /**
      * 获取默认的表单对象
+     * @return 表单对象
      */
     getDefaultForm(file = null) {
       return {
@@ -164,6 +182,9 @@ export default {
         file
       }
     },
+    /**
+     * 验证表单
+     */
     validateForm() {
       this.$refs.imageBuildForm.validaForm()
     }

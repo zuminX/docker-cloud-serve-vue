@@ -87,6 +87,9 @@ export default {
     }
   },
   methods: {
+    /**
+     * 上传图片
+     */
     async uploadImg() {
       const _this = this
       this.$refs.cropper.getCropBlob(async function(avatar) {
@@ -108,6 +111,12 @@ export default {
         }
       })
     },
+    /**
+     * 构建上传表单数据
+     * @param policy 上传凭证
+     * @param  file 文件
+     * @param name 文件名
+     */
     buildFormData(policy, file, name) {
       const formData = new FormData()
       formData.append('OSSAccessKeyId', policy.accessKeyId)
@@ -118,27 +127,42 @@ export default {
       formData.append('file', file)
       return formData
     },
-    // 实时预览
+    /**
+     * 实时预览
+     * @param data 数据
+     */
     realTime(data) {
       this.previews = data
     },
-    // 向左旋转
+    /**
+     * 向左旋转
+     */
     rotateLeft() {
       this.$refs.cropper.rotateLeft()
     },
-    // 向右旋转
+    /**
+     * 向右旋转
+     */
     rotateRight() {
       this.$refs.cropper.rotateRight()
     },
-    // 图片缩放
+    /**
+     * 图片缩放
+     * @param num 缩放尺度
+     */
     changeScale(num) {
       num = num || 1
       this.$refs.cropper.changeScale(num)
     },
-    // 覆盖默认的上传行为
+    /**
+     * 覆盖默认的上传行为
+     */
     requestUpload() {
     },
-    // 上传预处理
+    /**
+     * 上传预处理
+     * @param file 上传的文件
+     */
     beforeUpload(file) {
       if (file.type.indexOf('image/') === -1) {
         showErrorToast({

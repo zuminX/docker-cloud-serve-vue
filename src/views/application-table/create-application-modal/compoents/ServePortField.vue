@@ -47,7 +47,7 @@ export default {
      */
     portList: {
       handler: function(newValue) {
-        this.$emit('changePort', newValue)
+        this.$emit('change', newValue)
       },
       deep: true
     }

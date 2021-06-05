@@ -13,7 +13,7 @@
         <BasicField>
           <CaptchaInput ref="registerCaptcha" v-model="registerForm.code" :uuid.sync="registerForm.uuid" />
         </BasicField>
-        <div class="ui fluid large teal button" @click="validaRegisterForm">注册</div>
+        <div v-loading="loading" class="ui fluid large teal button" @click="validaRegisterForm">注册</div>
       </Form>
 
       <div class="ui message">
@@ -31,6 +31,7 @@ import Form from '@/components/Form/index'
 import LeftIconInputField from '@/components/Form/field/LeftIconInputField'
 import BasicField from '@/components/Form/field/BasicField'
 import { register } from '@/api/ums/securityAPI'
+import { loadingRequest } from '@/api'
 
 export default {
   name: 'Register',
@@ -44,7 +45,8 @@ export default {
         nickname: '',
         code: '',
         uuid: ''
-      }
+      },
+      loading: false
     }
   },
   methods: {
@@ -58,7 +60,7 @@ export default {
      * 提交表单，进行注册
      */
     async submitRegister() {
-      const { success, data } = await register(this.registerForm)
+      const { success, data } = await loadingRequest(register(this.registerForm), this)
       if (!success) {
         this.refreshCaptcha()
         return

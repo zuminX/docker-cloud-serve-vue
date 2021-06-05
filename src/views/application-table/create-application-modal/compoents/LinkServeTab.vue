@@ -59,7 +59,7 @@ export default {
      */
     serveLinkTabs: {
       handler: function(newValue) {
-        this.$emit('changeServeLink', newValue.map(tab => tab.link))
+        this.$emit('change', newValue.map(tab => tab.link))
       },
       deep: true
     }
@@ -84,7 +84,7 @@ export default {
     addLinkServe() {
       const newTabName = ++this.tabIndex + ''
       this.serveLinkTabs.push({
-        title: '链接应用' + this.tabIndex,
+        title: '链接服务' + this.tabIndex,
         name: newTabName,
         link: {
           beLinkServeId: '',

@@ -24,6 +24,7 @@
 import LeftLabeledField from '@/components/Form/field/LeftLabeledField'
 import { loadingRequest } from '@/api'
 import { searchImage } from '@/api/dockerserve/imageAPI'
+
 export default {
   name: 'ServeImageField',
   components: { LeftLabeledField },
@@ -35,11 +36,21 @@ export default {
     }
   },
   watch: {
+    /**
+     * 监听镜像ID的改变
+     * 将镜像ID以'changeImage'事件的形式向上抛出
+     * @param newValue 新值
+     */
     imageId(newValue) {
-      this.$emit('changeImage', newValue)
+      console.log(newValue)
+      this.$emit('change', newValue)
     }
   },
   methods: {
+    /**
+     * 搜索镜像
+     * @param query 镜像名称
+     */
     async searchImage(query) {
       if (query === '') {
         return

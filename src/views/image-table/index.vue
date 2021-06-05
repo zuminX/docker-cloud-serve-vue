@@ -100,7 +100,6 @@ export default {
      * 更新当前分页数据
      * @param page 当前页
      * @param pageSize 每页大小
-     * @returns {Promise<void>}
      */
     async updateCurrentPageData(page = 1, pageSize = 5) {
       const search = this.showShare ? searchShareImageForPage : searchCurrentUserImageForPage

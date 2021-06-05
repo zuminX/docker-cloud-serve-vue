@@ -28,19 +28,19 @@ export default {
     return {
       chart: null,
       serveState: [{
-        value: 0,
+        value: '',
         name: '创建中'
       }, {
-        value: 0,
+        value: '',
         name: '重启中'
       }, {
-        value: 0,
+        value: '',
         name: '运行中'
       }, {
-        value: 0,
+        value: '',
         name: '暂停中'
       }, {
-        value: 0,
+        value: '',
         name: '停止'
       }]
     }
@@ -59,6 +59,9 @@ export default {
     this.chart = null
   },
   methods: {
+    /**
+     * 初始化图表
+     */
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
       this.chart.setOption({
@@ -85,6 +88,9 @@ export default {
         ]
       })
     },
+    /**
+     * 初始化服务状态数据
+     */
     async initServeState() {
       const { success, data } = await getServeBasicInfo()
       if (success) {
@@ -93,7 +99,6 @@ export default {
         this.serveState[2].value = data.filter(serve => serve.state === 'running').length
         this.serveState[3].value = data.filter(serve => serve.state === 'paused').length
         this.serveState[4].value = data.filter(serve => serve.state === 'exited').length
-        console.log(this.serveState)
       }
     }
   }

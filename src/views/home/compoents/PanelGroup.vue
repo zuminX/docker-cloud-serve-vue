@@ -17,6 +17,7 @@
             {{ cardData.description }}
           </div>
           <count-to
+            v-loading="loading"
             :duration="2600"
             :end-val="totals[cardData.dataName]"
             :start-val="0"
@@ -31,6 +32,7 @@
 <script>
 import CountTo from 'vue-count-to'
 import { getStatistics } from '@/api/dockerserve/dashboardAPI'
+import { loadingRequest } from '@/api'
 
 export default {
   components: {
@@ -56,11 +58,12 @@ export default {
         applicationTotal: 0,
         imageTotal: 0,
         serveTotal: 0
-      }
+      },
+      loading: false
     }
   },
   async mounted() {
-    const { success, data } = await getStatistics()
+    const { success, data } = await loadingRequest(getStatistics(), this)
     if (success) {
       this.totals = data
     }

@@ -3,6 +3,11 @@ import {
   listNicknameById
 } from '@/api/ums/infoAPI'
 
+/**
+ * 为对象添加用户昵称属性
+ * @param object 对象
+ * @return {Promise<*>} 添加用户昵称的对象
+ */
 export const appendNickname = async(object) => {
   const userId = object.userId
   if (!userId) {
@@ -16,6 +21,11 @@ export const appendNickname = async(object) => {
   return object
 }
 
+/**
+ * 为列表中的对象添加用户昵称属性
+ * @param list 列表
+ * @return {Promise<*>} 列表元素添加用户昵称
+ */
 export const batchAppendNickname = async(list) => {
   const userIdList = list.map(object => object.userId)
   if (userIdList.length !== list.length) {
@@ -26,6 +36,7 @@ export const batchAppendNickname = async(list) => {
   }
   const { success, data } = await listNicknameById(userIdList)
   if (success) {
+    console.log(data)
     for (let i = 0; i < data.length; i++) {
       list[i].nickname = data[i]
     }

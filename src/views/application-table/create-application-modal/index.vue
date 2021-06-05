@@ -31,9 +31,9 @@
                 <label>是否共享</label>
               </div>
             </BasicField>
-            <ServeImageField @changeImagw="updateImage($event, tab.serve)" />
-            <ServePortField @changePort="updatePort($event, tab.serve)" />
-            <LinkServeTab @changeServeLink="updateServeLink($event, tab.serve)" />
+            <ServeImageField @change="updateImage($event, tab.serve)" />
+            <ServePortField @change="updatePort($event, tab.serve)" />
+            <LinkServeTab @change="updateServeLink($event, tab.serve)" />
           </el-tab-pane>
         </el-tabs>
       </Form>
@@ -84,6 +84,9 @@ export default {
     this.addServe()
   },
   methods: {
+    /**
+     * 保存应用
+     */
     async save() {
       if (this.serveTabs.length === 0) {
         showWarnToast({
@@ -105,16 +108,18 @@ export default {
     },
     /**
      * 设置用户表单验证规则
+     * @return 验证规则
      */
     validateRule() {
       return {
-        name: FormValidation.normalStringRule({ fieldName: '名称', minLength: 4, maxLength: 16 }),
+        name: FormValidation.nameStringRule({ fieldName: '名称', minLength: 4, maxLength: 16 }),
         share: FormValidation.notEmptyRule('是否共享'),
         description: FormValidation.maxLengthRule('描述', 256)
       }
     },
     /**
      * 获取默认的表单对象
+     * @return 表单对象
      */
     getDefaultForm() {
       return {
@@ -124,6 +129,10 @@ export default {
         serveList: []
       }
     },
+    /**
+     * 初始化数据
+     * @return 数据
+     */
     initData() {
       return {
         form: this.getDefaultForm(),
@@ -133,10 +142,13 @@ export default {
         loading: false
       }
     },
+    /**
+     * 增加服务
+     */
     addServe() {
       const newTabName = ++this.tabIndex + ''
       this.serveTabs.push({
-        title: '应用' + this.tabIndex,
+        title: '服务' + this.tabIndex,
         name: newTabName,
         serve: {
           imageId: '',
@@ -149,6 +161,10 @@ export default {
       })
       this.serveTabsValue = newTabName
     },
+    /**
+     * 删除服务
+     * @param targetName 删除目标的名称
+     */
     removeServe(targetName) {
       const tabs = this.serveTabs
       let activeName = this.serveTabsValue
@@ -165,15 +181,36 @@ export default {
       this.serveTabsValue = activeName
       this.serveTabs = tabs.filter(tab => tab.name !== targetName)
     },
+    /**
+     * 获取该页指定项的名称
+     * @param tab  页
+     * @param name 名称
+     * @return {string} 名称
+     */
     getTabItemName(tab, name) {
       return tab.name + '-' + name
     },
+    /**
+     * 更新服务链接
+     * @param serveLinkList 服务链接列表
+     * @param serve 服务
+     */
     updateServeLink(serveLinkList, serve) {
       serve.linkServeList = serveLinkList
     },
+    /**
+     * 更新端口
+     * @param portList 端口列表
+     * @param serve 服务
+     */
     updatePort(portList, serve) {
       serve.portList = portList
     },
+    /**
+     * 更新镜像
+     * @param imageId 镜像ID
+     * @param serve 服务
+     */
     updateImage(imageId, serve) {
       serve.imageId = imageId
     }
