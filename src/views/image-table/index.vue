@@ -53,9 +53,9 @@
         </tfoot>
       </table>
     </div>
-    <EditImageModal ref="editImageModal" @saveSuccess="refreshTable" />
+    <EditImageModal ref="editImageModal" @success="refreshTable" />
     <ImageDetailModal ref="imageDetailModal" />
-    <BuildImageModal @buildSuccess="refreshTable" />
+    <BuildImageModal @success="refreshTable" />
   </div>
 </template>
 

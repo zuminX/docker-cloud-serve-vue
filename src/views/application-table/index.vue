@@ -13,7 +13,7 @@
           <el-radio v-model="showShare" :label="false" border>显示自己的应用</el-radio>
         </div>
         <div class="four wide column">
-          <button class="ui blue right floated button" @click="showModal('createApplicationModal')">新建应用</button>
+          <button class="ui blue right floated button" @click="saveApplication()">新建应用</button>
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@
                 <button v-loading="operationLoading[index]" class="ui red basic button" @click="stopApplication(index)">
                   停止
                 </button>
-                <button class="ui violet basic button" @click="editApplication(application)">
+                <button class="ui violet basic button" @click="saveApplication(application)">
                   修改
                 </button>
               </template>
@@ -59,9 +59,8 @@
         </tfoot>
       </table>
     </div>
-    <EditApplicationModal ref="editApplicationModal" @editSuccess="refreshTable" />
     <ApplicationDetailModal ref="applicationDetailModal" />
-    <CreateApplicationModal @createSuccess="refreshTable" />
+    <SaveApplicationModal ref="saveApplicationModal" @success="refreshTable" />
   </div>
 </template>
 
@@ -73,8 +72,7 @@ import {
   limitLength
 } from '@/utils/publicUtils'
 import ApplicationDetailModal from '@/views/application-table/compoents/ApplicationDetailModal'
-import EditApplicationModal from '@/views/application-table/compoents/EditApplicationModal'
-import CreateApplicationModal from '@/views/application-table/create-application-modal'
+import SaveApplicationModal from '@/views/application-table/save-application-modal'
 import {
   searchCurrentUserApplication,
   searchShareApplication,
@@ -88,7 +86,7 @@ import {
 
 export default {
   name: 'ApplicationTable',
-  components: { CreateApplicationModal, EditApplicationModal, ApplicationDetailModal, PaginationMenu },
+  components: { SaveApplicationModal, ApplicationDetailModal, PaginationMenu },
   data() {
     return {
       pageInformation: getDefaultPageInformation(),
@@ -132,10 +130,10 @@ export default {
       this.updateCurrentPageData(this.pageInformation.currentPage, this.pageInformation.pageSize)
     },
     /**
-     * 打开编辑应用的弹出层
+     * 打开保存应用的弹出层
      */
-    editApplication(application) {
-      this.$refs.editApplicationModal.init(application)
+    saveApplication(application = null) {
+      this.$refs.saveApplicationModal.init(application)
     },
     /**
      * 显示应用详情

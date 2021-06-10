@@ -4,6 +4,29 @@ import {
 } from '@/api/ums/infoAPI'
 
 /**
+ * 是否处于开发环境
+ * @return {boolean} 若处于开发环境则返回true，否则返回false
+ */
+export const isDev = () => {
+  return process.env.NODE_ENV === 'development'
+}
+
+/**
+ * 是否开启Mock
+ * @return {boolean} 若开启则返回true，否则返回false
+ */
+export const isMock = () => {
+  return process.env.VUE_APP_MOCK === 'true'
+}
+
+/**
+ * 获取项目访问URL
+ */
+export const getUrl = () => {
+  return isDev() ? 'http://www.dockercloud.com' : 'http://dockercloud.cn1.utools.club'
+}
+
+/**
  * 为对象添加用户昵称属性
  * @param object 对象
  * @return {Promise<*>} 添加用户昵称的对象

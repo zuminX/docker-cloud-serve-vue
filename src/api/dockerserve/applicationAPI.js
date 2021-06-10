@@ -9,10 +9,10 @@ const baseUrl = 'dockerserve/application'
 const infoAPI = {
   searchCurrentUser: new APIInfo('list', baseUrl),
   searchShare: new APIInfo('listShare', baseUrl),
-  create: new APIInfo('create', baseUrl, 'post'),
+  save: new APIInfo('save', baseUrl, 'post'),
   start: new APIInfo('start', baseUrl),
   stop: new APIInfo('stop', baseUrl),
-  edit: new APIInfo('modify', baseUrl, 'post')
+  detail: new APIInfo('detail', baseUrl)
 }
 
 /**
@@ -30,10 +30,10 @@ export const searchShareApplication = (name, page, pageSize) => {
 }
 
 /**
- * 创建应用
+ * 保存应用
  */
-export const createApplication = (form) => {
-  return request(infoAPI.create, form)
+export const saveApplication = (form) => {
+  return request(infoAPI.save, form)
 }
 
 /**
@@ -51,8 +51,8 @@ export const stopApplication = (application) => {
 }
 
 /**
- * 修改应用
+ * 获取应用的详细信息
  */
-export const editApplication = (form) => {
-  return request(infoAPI.edit, form)
+export const detailApplication = (application) => {
+  return request(infoAPI.detail, { application })
 }

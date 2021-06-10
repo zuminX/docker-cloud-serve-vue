@@ -32,9 +32,14 @@ import { showWarnToast } from '@/utils/publicUtils'
 export default {
   name: 'ServePortField',
   components: { LeftLabeledField },
+  props: {
+    portList: {
+      type: Array,
+      default: () => ([])
+    }
+  },
   data() {
     return {
-      portList: [],
       inputPortVisible: false,
       inputPortValue: ''
     }
@@ -42,12 +47,12 @@ export default {
   watch: {
     /**
      * 监听端口列表的改变
-     * 将端口列表以'changePort'事件的形式向上抛出
+     * 将端口列表以"update"事件的形式向上抛出
      * @param newValue 新值
      */
     portList: {
       handler: function(newValue) {
-        this.$emit('change', newValue)
+        this.$emit('update:portList', newValue)
       },
       deep: true
     }

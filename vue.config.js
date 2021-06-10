@@ -4,8 +4,23 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const path = require('path')
 
 function resolve(dir) {
-  // eslint-disable-next-line no-undef
   return path.join(__dirname, dir)
+}
+
+/**
+ * 是否处于开发环境
+ * @return {boolean} 若处于开发环境则返回true，否则返回false
+ */
+function isDev() {
+  return process.env.NODE_ENV !== 'development'
+}
+
+/**
+ * 是否开启Mock
+ * @return {boolean} 若开启则返回true，否则返回false
+ */
+function isMock() {
+  return process.env.VUE_APP_MOCK === 'true'
 }
 
 const production = process.env.NODE_ENV === 'production'
@@ -24,7 +39,7 @@ proxyObj['/'] = {
 }
 
 function getDevServer() {
-  if (process.env.VUE_APP_MOCK === 'true' && process.env.NODE_ENV === 'development') {
+  if (isMock() && isDev()) {
     return {
       port,
       open: true,
@@ -96,7 +111,7 @@ module.exports = {
       }
     }))
   },
-  publicPath: production ? '/home/' : '/',
+  publicPath: isDev() ? '/home/' : '/',
   // 测试时的端口和反向代理到服务器
   devServer: getDevServer()
 }

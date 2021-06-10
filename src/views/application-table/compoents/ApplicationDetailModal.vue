@@ -42,9 +42,6 @@
               {{ port }}
             </span>
             <p />
-            <a class="ui orange ribbon label">创建者</a>
-            <span>{{ serve.nickname }}</span>
-            <p />
             <a class="ui blue ribbon label">说明</a>
             <p>
               {{ serve.description }}
@@ -102,7 +99,6 @@ export default {
       if (success) {
         this.serveInfo = data
         this.serveTabsValue = this.serveInfo[0].name
-        await batchAppendNickname(this.serveInfo)
       }
       this.loading = false
     },

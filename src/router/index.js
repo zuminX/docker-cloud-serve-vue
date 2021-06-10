@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Layout from '@/components/Layout'
+import { getUrl } from '@/utils/coreUtils'
 
 Vue.use(VueRouter)
+
+const url = getUrl()
 
 // 修改路由replace方法,阻止重复点击报错
 const originalReplace = VueRouter.prototype.replace
@@ -99,7 +102,7 @@ export const asyncRouterMap = [
       role: ['ADMIN']
     },
     children: [{
-      path: 'http://www.dockercloud.com/admin',
+      path: `${url}/admin`,
       meta: {
         title: '后台管理',
         icon: 'link'

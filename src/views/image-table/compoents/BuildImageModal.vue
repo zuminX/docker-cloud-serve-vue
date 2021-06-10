@@ -105,7 +105,8 @@ export default {
         showSuccessToast({
           message: '构建镜像成功'
         })
-        this.$emit('buildSuccess')
+        this.$emit('success')
+        this.initData()
       }
       loadingInstance.close()
     },
@@ -122,6 +123,13 @@ export default {
      */
     requestUpload({ file }) {
       this.form = this.getDefaultForm(file)
+    },
+    initData() {
+      this.form = this.getDefaultForm()
+      this.fileType = ''
+      this.javaVersion = '自动'
+      this.active = 0
+      this.canSubmit = false
     },
     /**
      * 上传预处理

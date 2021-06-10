@@ -81,7 +81,7 @@ export default {
         showSuccessToast({
           message: '修改镜像成功'
         })
-        this.$emit('saveSuccess')
+        this.$emit('success')
       }
     },
     /**

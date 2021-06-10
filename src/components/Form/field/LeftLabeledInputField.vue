@@ -1,6 +1,6 @@
 <template>
   <LeftLabeledField :label="label">
-    <input :name="name" :type="type" :value="data" @input="$emit('update:data', $event.target.value)">
+    <input :name="name" :type="type" :value="data" :placeholder="placeholder" @input="$emit('update:data', $event.target.value)">
   </LeftLabeledField>
 </template>
 
@@ -26,6 +26,10 @@ export default {
     type: {
       type: String,
       default: 'text'
+    },
+    placeholder: {
+      type: String,
+      default: ''
     }
   }
 }
