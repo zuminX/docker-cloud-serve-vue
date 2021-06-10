@@ -1,5 +1,5 @@
 <template>
-  <Modal modal-id="buildImageModal">
+  <Modal modal-id="buildImageModal" form-id="imageBuildForm">
     <template #header>
       <BasicModalHeader class="blue">
         构建镜像
@@ -56,7 +56,7 @@
     <template #actions>
       <div class="actions">
         <div class="ui grey cancel button">取消</div>
-        <div class="ui green ok button" :class="{'disabled': active !== 1}" @click="validateForm">提交</div>
+        <div class="ui green ok button" :class="{'disabled': active !== 1}">提交</div>
       </div>
     </template>
   </Modal>
@@ -189,12 +189,6 @@ export default {
         share: false,
         file
       }
-    },
-    /**
-     * 验证表单
-     */
-    validateForm() {
-      this.$refs.imageBuildForm.validaForm()
     }
   }
 }

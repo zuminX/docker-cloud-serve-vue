@@ -61,10 +61,12 @@ import BasicModalHeader from '@/components/Modal/header/BasicModalHeader'
 import BasicModalContent from '@/components/Modal/content/BasicModalContent'
 import Modal from '@/components/Modal'
 import CloseModalActions from '@/components/Modal/actions/CloseModalActions'
-import { getServeInfo } from '@/api/dockerserve/serveAPI'
 import {
-  appendNickname,
-  batchAppendNickname
+  getAccessToken,
+  getServeInfo
+} from '@/api/dockerserve/serveAPI'
+import {
+  appendNickname
 } from '@/utils/coreUtils'
 import { showWarnToast } from '@/utils/publicUtils'
 
@@ -115,17 +117,19 @@ export default {
      * @param serve 服务
      * @param port 端口
      */
-    openServe(serve, port) {
+    async openServe(serve, port) {
       if (!this.isRun(serve)) {
         showWarnToast({ message: '该服务未启动，无法访问' })
         return
       }
-      const serveId = serve.id
-      const { href } = this.$router.resolve({
-        path: `/proxy/${serveId}:${port}`
-      })
-      const url = href.replace('#/', '')
-      window.open(url, '_blank')
+      const { success, data } = await getAccessToken(serve.id, port)
+      if (success) {
+        const { href } = this.$router.resolve({
+          path: `/proxy/${data}`
+        })
+        const url = href.replace('#/', '')
+        window.open(url, '_blank')
+      }
     }
   }
 }

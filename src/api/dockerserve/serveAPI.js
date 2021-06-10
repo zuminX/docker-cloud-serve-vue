@@ -9,7 +9,8 @@ const baseUrl = 'dockerserve/serve'
 const infoAPI = {
   search: new APIInfo('search', baseUrl),
   info: new APIInfo('infoByApplication', baseUrl),
-  basicInfo: new APIInfo('basicInfo', baseUrl)
+  basicInfo: new APIInfo('basicInfo', baseUrl),
+  accessToken: new APIInfo('accessToken', baseUrl)
 }
 
 /**
@@ -32,4 +33,11 @@ export const getServeInfo = (application) => {
  */
 export const getServeBasicInfo = () => {
   return request(infoAPI.basicInfo)
+}
+
+/**
+ * 获取访问服务的路径令牌
+ */
+export const getAccessToken = (serve, port) => {
+  return request(infoAPI.accessToken, { serve, port })
 }
